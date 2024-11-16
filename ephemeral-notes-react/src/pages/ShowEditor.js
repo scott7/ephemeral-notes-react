@@ -239,13 +239,13 @@ and more
 </p>
 `
 
-export default () => {
+const ShowEditor = () => {
   return (
       <div>
       <div style={{
           margin: '2px',
           width: '1300px',
-          height: '450px',
+          height: '500px',
           overflow: 'auto',
           border: '2px solid #ccc',
           focus: 'none'
@@ -255,3 +255,5 @@ export default () => {
       </div>
   )
 }
+
+export default ShowEditor
