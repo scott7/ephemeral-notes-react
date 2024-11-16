@@ -178,7 +178,7 @@ const MenuBar = () => {
               <i className="bi bi-arrow-clockwise"></i> redo
           </button>
           <button
-              onClick={() => editor.chain().focus().toggleHighlight().run()}
+              onClick={() => editor.chain().focus().toggleHighlight({ color: '#ffcc00' }).run()}
               className={editor.isActive('highlight') ? 'is-active' : ''}
           >
               <i className="bi bi-highlighter"></i> highlight
@@ -244,7 +244,7 @@ const ShowEditor = () => {
       <div>
       <div style={{
           margin: '2px',
-          width: '1300px',
+          width: 'fit-content',
           height: '500px',
           overflow: 'auto',
           border: '2px solid #ccc',
