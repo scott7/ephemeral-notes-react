@@ -255,7 +255,6 @@ const ShowEditor = () => {
       <div>
       <div style={{
           margin: '2px',
-          minWidth: '800px',
           height: '500px',
           overflow: 'auto',
           border: '2px solid #ccc',
