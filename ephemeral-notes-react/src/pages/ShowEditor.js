@@ -1,5 +1,7 @@
 import '../style.scss'
 
+import React, { useState } from 'react';
+
 import { Color } from '@tiptap/extension-color'
 import Highlight from '@tiptap/extension-highlight'
 import ListItem from '@tiptap/extension-list-item'
@@ -7,10 +9,13 @@ import TextStyle from '@tiptap/extension-text-style'
 import Underline from '@tiptap/extension-underline'
 import { EditorProvider, useCurrentEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import React from 'react'
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor()
+
+  const [isMenuBarVisible, setIsMenuBarVisible] = useState(true);
+
+  const toggleMenuBar = () => setIsMenuBarVisible(!isMenuBarVisible);
 
   if (!editor) {
     return null
@@ -18,6 +23,10 @@ const MenuBar = () => {
 
   return (
       <>
+      <button onClick={toggleMenuBar} className="toggle-menu-btn">
+        {isMenuBarVisible ? <i class="bi bi-menu-down"></i> : <i class="bi bi-menu-up"></i>}
+      </button>
+      {isMenuBarVisible && (
       <div className="menu-bar">
           <button
               onClick={() => editor.chain().focus().toggleBold().run()}
@@ -186,6 +195,7 @@ const MenuBar = () => {
           <br/>
           <br/>
           </div>
+          )}
       </>
   )
 }
@@ -239,12 +249,13 @@ and more
 </p>
 `
 
+
 const ShowEditor = () => {
   return (
       <div>
       <div style={{
           margin: '2px',
-          width: 'fit-content',
+          minWidth: '800px',
           height: '500px',
           overflow: 'auto',
           border: '2px solid #ccc',

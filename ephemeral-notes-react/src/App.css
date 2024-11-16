@@ -104,3 +104,17 @@ input[type="checkbox"] {
   background-color: #E0E0E0; /* Light grey for disabled state */
   cursor: not-allowed;
 }
+
+.toggle-menu-btn {
+  margin-bottom: 10px; /* Adds space below the button */
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: #007bff; /* Example: a blue background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.toggle-menu-btn:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
