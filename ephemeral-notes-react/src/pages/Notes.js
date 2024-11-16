@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotes } from './NotesContext';
+import ShowEditor from './ShowEditor';
 
 const Notes = () => {
     const { refreshNotes } = useNotes();
@@ -117,7 +118,6 @@ const Notes = () => {
   
     return (
       <div>
-      <h3>Notes</h3>
       <form method="POST" onSubmit={handleSubmit}>
         <div className="form-group">
           <div className="input-group mb-3">
@@ -129,15 +129,20 @@ const Notes = () => {
         </div>
         <div className="form-group">
           <label htmlFor="note_body"></label>
-          <textarea id="note_body" className="form-control" type="text" name="note_body" required={true} rows="10" cols="80" value={note.note_body || ''} onChange={handleChange}></textarea>
+          {/* <textarea id="note_body" className="form-control" type="text" name="note_body" required={true} rows="10" cols="80" value={note.note_body || ''} onChange={handleChange}></textarea> */}
+          <ShowEditor name="note_body" value={note.note_body} onChange={handleChange} contents='hello'/>
         </div>
-        <div className="form-group">
+        <div className="expiration">
           <label htmlFor="expiration">Keep forever:</label>
-          <input id="expiration" className="form-control" type="checkbox" name="expiration"/>
+          <input id="expiration" className="expiration" type="checkbox" name="expiration"/>
         </div>
-        <button className="btn btn-primary bi bi-pencil" type="submit">Submit</button>
-        <button className="btn btn-danger bi bi-trash" disabled={!note._id} type="button" onClick={handleDelete}>Delete</button>
-        {showMessage && <div>{message}</div>}
+        <div className="buttons-container">
+          <button className="btn btn-primary bi bi-pencil" type="submit">Submit</button>
+          <button className="btn btn-danger bi bi-trash" disabled={!note._id} type="button" onClick={handleDelete}>Delete</button>
+          {showMessage && <div>{message}</div>}
+        </div>
+        <br></br>
+          <p>Submit/Delete buttons do not work. Demo only.</p>
       </form>
       </div>
     );
