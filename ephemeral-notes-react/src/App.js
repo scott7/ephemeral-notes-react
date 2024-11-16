@@ -1,11 +1,14 @@
 import './App.css';
 
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Notes from './pages/Notes';
 import View from './pages/View';
 import { NotesProvider } from './pages/NotesContext';
 import NavBar from './pages/NavBar';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+
+require('dotenv').config();
 
 const App = () => {
   return (

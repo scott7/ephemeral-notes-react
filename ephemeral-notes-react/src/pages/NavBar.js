@@ -9,8 +9,8 @@ const Navbar = () => {
       {notes.length > 0 ? (
         <ul className="navbar-nav">
           {notes.map((note) => (
-            <li key={note._id} className="nav-item">
-              <a className="nav-link text-primary bg-light" href={`/${note._id}`}>
+            <li key={note.id} className="nav-item">
+              <a className="nav-link text-primary bg-light" href={`/${note.id}`}>
                 <i className="bi bi-pencil-square"></i> {note.title}
               </a>
             </li>

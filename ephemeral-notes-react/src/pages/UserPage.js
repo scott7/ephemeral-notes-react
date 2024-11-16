@@ -5,7 +5,7 @@ let { id } = useParams();
 return (
 <>
 <h1>Hello there user {id}</h1>
-<p>This is your awesome User Profile page</p>
+<p>This is your User Profile page</p>
 </>
 );
 }

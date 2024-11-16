@@ -8,7 +8,7 @@ const Notes = () => {
     const [notes, setNotes] = useState([]);
     var [note, setNote] = useState({
       title: '',
-      content: '',
+      note_body: '',
       id: '',
     });
 
@@ -25,7 +25,7 @@ const Notes = () => {
 
     // Fetch notes from the backend
     useEffect(() => {
-      fetch('http://localhost:8000/api/notes')
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/api/notes`)
         .then(response => response.json())
         .then(data =>  {
           if (Array.isArray(data)) {
@@ -41,7 +41,7 @@ const Notes = () => {
     useEffect(() => {
         if (!noteId) return
         const fetchNoteDetails = async () => {
-          const response = await fetch(`http://localhost:8000/api/find/${noteId}`);
+          const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/find/${noteId}`);
           const data = await response.json();
           setNote(data); // Assuming the API returns the note object
         };
@@ -52,10 +52,8 @@ const Notes = () => {
     // implement delete note logic 
     const deleteNote = async () => {
       try {
-        console.log('note is');
-        console.log(note._id);
-        const response = await fetch(`http://localhost:8000/api/delete/${note._id}`, {
-          method: 'GET',
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/delete/${note.id}`, {
+          method: 'DELETE',
         });
         if (response.ok) {
           console.log('completed');
@@ -68,7 +66,6 @@ const Notes = () => {
           throw new Error('Failed to delete the note.');
         }
       } catch (error) {
-        console.error('Error deleting note:', error);
         setMessage('Failed to delete the note.');
         setShowMessage(true);
       }
@@ -93,7 +90,7 @@ const Notes = () => {
     // Handle form submission to add a new note / modify
     const handleSubmit = (e) => {
       e.preventDefault();
-      fetch('http://localhost:8000/api/notes', {
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/api/notes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -124,13 +121,16 @@ const Notes = () => {
             <div className="input-group-prepend">
               <span id="inputGroup-sizing-default" className="input-group-text">Title</span>
             </div>
-            <input className="form-control" type="text" aria-label="title input" aria-describedby="inputGroup-sizing-default" name="title" onChange={handleChange} value={note.title || ''}/>
+            <input className="form-control" type="text" aria-label="title input" aria-describedby="inputGroup-sizing-default" name="title" onChange={handleChange} placeholder='Title...' value={note.title || ''}/>
           </div>
         </div>
         <div className="form-group">
           <label htmlFor="note_body"></label>
-          {/* <textarea id="note_body" className="form-control" type="text" name="note_body" required={true} rows="10" cols="80" value={note.note_body || ''} onChange={handleChange}></textarea> */}
-          <ShowEditor name="note_body" value={note.note_body} onChange={handleChange} contents='hello'/>
+          <ShowEditor 
+            name="note_body" 
+            value={note.note_body || '<br></br><br></br>'} 
+            onChange={(content) => handleChange({ target: { name: 'note_body', value: content } })} 
+          /> 
         </div>
         <div className="expiration">
           <label htmlFor="expiration">Keep forever:</label>
@@ -138,11 +138,11 @@ const Notes = () => {
         </div>
         <div className="buttons-container">
           <button className="btn btn-primary bi bi-pencil" type="submit">Submit</button>
-          <button className="btn btn-danger bi bi-trash" disabled={!note._id} type="button" onClick={handleDelete}>Delete</button>
+          <button className="btn btn-danger bi bi-trash" disabled={!note.id} type="button" onClick={handleDelete}>Delete</button>
+          <p></p>
           {showMessage && <div>{message}</div>}
         </div>
         <br></br>
-          <p>Submit/Delete buttons do not work. Demo only.</p>
       </form>
       </div>
     );
