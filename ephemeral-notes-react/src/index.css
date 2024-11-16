@@ -1,0 +1,40 @@
+
+body {
+  padding: 50px;
+  font: 19px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #000000;
+  text-align: center;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+      margin-left: -250px;
+  }
+  #sidebar.active {
+      margin-left: 0;
+  }
+}
+
+a {
+  color: #00a0df;
+}
+
+label { 
+  display: block;
+  text-align: center;
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  width: 15px;
+  vertical-align: middle;
+}
+
+#expiration {
+  display: inline-block;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; 
+  text-align: center;
+  color: #000000;
+}
+
