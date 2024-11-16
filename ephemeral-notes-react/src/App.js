@@ -8,7 +8,6 @@ import { NotesProvider } from './pages/NotesContext';
 import NavBar from './pages/NavBar';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-require('dotenv').config();
 
 const App = () => {
   return (
