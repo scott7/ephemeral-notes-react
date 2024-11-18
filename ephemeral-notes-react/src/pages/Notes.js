@@ -127,8 +127,8 @@ const Notes = () => {
         <div className="form-group">
           <label htmlFor="note_body"></label>
           <ShowEditor 
-            name="note_body" 
-            value={note.note_body || '<br></br><br></br>'} 
+            name="note_body"
+            value={note.note_body || ''}
             onChange={(content) => handleChange({ target: { name: 'note_body', value: content } })} 
           /> 
         </div>
