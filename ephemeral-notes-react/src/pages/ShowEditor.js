@@ -1,6 +1,6 @@
 import '../style.scss'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { Color } from '@tiptap/extension-color'
 import Highlight from '@tiptap/extension-highlight'
@@ -200,28 +200,42 @@ const MenuBar = ({ editor }) => {
 }
 
 const ShowEditor = ({ value, onChange }) => {
-    const [initialContent, setInitialContent] = useState(value);
+    const initialContentRef = useRef(value);
+  
     const editor = useEditor({
       extensions: [
-        StarterKit,
         Underline,
-        Color.configure({ types: [TextStyle.name, ListItem.name] }),
-        TextStyle.configure({ types: [ListItem.name] }),
-        Highlight.configure({ multicolor: true })
+        Color.configure({types: [TextStyle.name, ListItem.name]}),
+        TextStyle.configure({types: [ListItem.name]}),
+        StarterKit.configure({
+            bulletList: {
+            keepMarks: true,
+            keepAttributes: false,
+            paragraph: false,
+        },
+        orderedList: {
+        keepMarks: true,
+        keepAttributes: false,
+        },
+  }),
+    Highlight.configure({ multicolor: true })
       ],
-      content: initialContent, // Initialize with the value from prop
+      content: initialContentRef.current || '',
       onUpdate: ({ editor }) => {
-        // Call onChange with the new content whenever the editor content updates
-        onChange(editor.getHTML());
+        const htmlContent = editor.getHTML();
+        let cleanContent = htmlContent.replace(/\s/g, "\u00a0"); // convert whitespace to nbsp due to bug in handling spaces in the editor
+        if (onChange) {
+          onChange(cleanContent); // Notify the parent component of changes
+        }
       },
     });
   
     useEffect(() => {
-        if (editor && initialContent !== value) {
-          editor.commands.setContent(value || ''); // Load initial value once
-          setInitialContent(value); // Update internal state only on load
-        }
-      }, [value, editor, initialContent]);
+      if (editor && initialContentRef.current !== value) {
+        editor.commands.setContent(value || ''); // Update only when `value` changes
+        initialContentRef.current = value; // Update the ref
+      }
+    }, [value, editor]);
   
     if (!editor) {
       return null;
@@ -236,5 +250,6 @@ const ShowEditor = ({ value, onChange }) => {
       </div>
     );
   };
-
-export default ShowEditor
+  
+  export default ShowEditor;
+  

@@ -56,7 +56,6 @@ const Notes = () => {
           method: 'DELETE',
         });
         if (response.ok) {
-          console.log('completed');
           setMessage('Note deleted successfully.');
           setShowMessage(true);
           setNote({ title: '', note_body: '' }); // Reset form
