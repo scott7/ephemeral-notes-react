@@ -142,6 +142,7 @@ const Notes = () => {
           {showMessage && <div>{message}</div>}
         </div>
         <br></br>
+        Demo only: Sumbit / Delete functionality not enabled. 
       </form>
       </div>
     );
