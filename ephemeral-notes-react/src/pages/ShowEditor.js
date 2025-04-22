@@ -77,7 +77,7 @@ const MenuBar = ({ editor }) => {
               }
               className={editor.isActive('strike') ? 'is-active' : ''}
           >
-               <i className="bi bi-type-strikethrough"></i> strike
+                <i className="bi bi-type-strikethrough"></i> strike
           </button>
           <button type="button"
               onClick={() => editor.chain().focus().toggleCode().run()}
@@ -90,7 +90,7 @@ const MenuBar = ({ editor }) => {
               }
               className={editor.isActive('code') ? 'is-active' : ''}
           >
-              <i className="bi bi bi-code"></i> code
+                <i className="bi bi bi-code"></i> code
           </button>
           <button type="button" onClick={() => editor.chain().focus().unsetAllMarks().run()}>
           <i className="bi bi-eraser-fill"></i> clear marks
@@ -133,15 +133,8 @@ const MenuBar = ({ editor }) => {
           </button>
           <button type="button"
               onClick={() => editor.chain().focus().toggleBulletList().run()}
-              className={editor.isActive('bulletList') ? 'is-active' : ''}
           >
-              <i className="bi bi-list-ul"></i> bullet list
-          </button>
-          <button type="button"
-              onClick={() => editor.chain().focus().toggleOrderedList().run()}
-              className={editor.isActive('orderedList') ? 'is-active' : ''}
-          >
-               <i className="bi bi-list-ol"></i> ordered list
+                <i className="bi bi-list-ul"></i> bullet list
           </button>
           <button type="button"
               onClick={() => editor.chain().focus().toggleCodeBlock().run()}
@@ -151,9 +144,8 @@ const MenuBar = ({ editor }) => {
           </button>
           <button type="button"
               onClick={() => editor.chain().focus().toggleBlockquote().run()}
-              className={editor.isActive('blockquote') ? 'is-active' : ''}
           >
-              <i className="bi bi-blockquote-left"></i> blockquote
+               <i className="bi bi-blockquote-left"></i> blockquote
           </button>
           <button type="button" onClick={() => editor.chain().focus().setHorizontalRule().run()}>
             <i className="bi bi-rulers"></i> horizontal rule
@@ -193,63 +185,63 @@ const MenuBar = ({ editor }) => {
           </button>
           <br/>
           <br/>
-          </div>
-          )}
+      </div>
+      )}
       </>
   )
 }
 
 const ShowEditor = ({ value, onChange }) => {
-    const initialContentRef = useRef(value);
-  
-    const editor = useEditor({
-      extensions: [
-        Underline,
-        Color.configure({types: [TextStyle.name, ListItem.name]}),
-        TextStyle.configure({types: [ListItem.name]}),
-        StarterKit.configure({
-            bulletList: {
-            keepMarks: true,
-            keepAttributes: false,
-            paragraph: false,
-        },
-        orderedList: {
-        keepMarks: true,
-        keepAttributes: false,
-        },
-  }),
-    Highlight.configure({ multicolor: true })
-      ],
-      content: initialContentRef.current || '',
-      onUpdate: ({ editor }) => {
-        const htmlContent = editor.getHTML();
-        let cleanContent = htmlContent.replace(/\s/g, "\u00a0"); // convert whitespace to nbsp due to bug in handling spaces in the editor
-        if (onChange) {
-          onChange(cleanContent); // Notify the parent component of changes
-        }
+  const initialContentRef = useRef(value);
+
+  const editor = useEditor({
+    extensions: [
+      Underline,
+      Color.configure({types: [TextStyle.name, ListItem.name]}),
+      TextStyle.configure({types: [ListItem.name]}),
+      StarterKit.configure({
+          bulletList: {
+          keepMarks: true,
+          keepAttributes: false,
+          paragraph: false,
       },
-    });
-  
-    useEffect(() => {
-      if (editor && initialContentRef.current !== value) {
-        editor.commands.setContent(value || ''); // Update only when `value` changes
-        initialContentRef.current = value; // Update the ref
+      orderedList: {
+      keepMarks: true,
+      keepAttributes: false,
+      },
+}),
+  Highlight.configure({ multicolor: true })
+    ],
+    content: initialContentRef.current || '',
+    onUpdate: ({ editor }) => {
+      const htmlContent = editor.getHTML();
+      let cleanContent = htmlContent.replace(/\s/g, "\u00a0"); // convert whitespace to nbsp due to bug in handling spaces in the editor
+      if (onChange) {
+        onChange(cleanContent); // Notify the parent component of changes
       }
-    }, [value, editor]);
-  
-    if (!editor) {
-      return null;
+    },
+  });
+
+  useEffect(() => {
+    if (editor && initialContentRef.current !== value) {
+      editor.commands.setContent(value || ''); // Update only when `value` changes
+      initialContentRef.current = value; // Update the ref
     }
-  
-    return (
-      <div>
-        <div style={{ margin: '2px', height: '500px', overflow: 'auto', border: '2px solid #ccc', padding: '10px' }}>
-          <MenuBar editor={editor} />
-          <EditorContent editor={editor} />
-        </div>
+  }, [value, editor]);
+
+  if (!editor) {
+    return null;
+  }
+
+  return (
+    <div>
+      <div style={{ margin: '2px', height: '500px', overflow: 'auto', border: '2px solid #ccc', padding: '10px' }}>
+        <MenuBar editor={editor} />
+        <EditorContent editor={editor} />
       </div>
-    );
-  };
-  
-  export default ShowEditor;
+    </div>
+  );
+};
+
+export default ShowEditor;
   

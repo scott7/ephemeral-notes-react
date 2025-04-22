@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const NotesContext = createContext();
 
 export const useNotes = () => useContext(NotesContext);
@@ -9,7 +11,7 @@ export const NotesProvider = ({ children }) => {
 
   const fetchNotes = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/notes`);
+      const response = await fetch(`${API_BASE_URL}/api/notes`);
       if (!response.ok) throw new Error('Failed to fetch');
       const data = await response.json();
       setNotes(data);
