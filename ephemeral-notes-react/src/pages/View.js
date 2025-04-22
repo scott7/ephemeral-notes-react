@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { useNotes } from './NotesContext';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export default function View() {
     const { refreshNotes, notes } = useNotes();
 
@@ -14,7 +16,7 @@ export default function View() {
 
     const deleteNote = async (noteId) => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/delete/${noteId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/delete/${noteId}`, {
           method: 'DELETE',
         });
         if (response.ok) {
@@ -55,7 +57,7 @@ export default function View() {
             ))}
           </ul>
         ) : (
-          <ul className='no-bullets'><li>Nothing found.</li></ul>
+          <p>No notes found.</p>
         )}
       </>
     );

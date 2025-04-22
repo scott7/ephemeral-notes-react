@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useNotes } from './NotesContext';
 import ShowEditor from './ShowEditor';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const Notes = () => {
     const { refreshNotes } = useNotes();
     const [notes, setNotes] = useState([]);
@@ -25,7 +27,7 @@ const Notes = () => {
 
     // Fetch notes from the backend
     useEffect(() => {
-      fetch(`${process.env.REACT_APP_API_BASE_URL}/api/notes`)
+      fetch(`${API_BASE_URL}/api/notes`)
         .then(response => response.json())
         .then(data =>  {
           if (Array.isArray(data)) {
@@ -41,7 +43,7 @@ const Notes = () => {
     useEffect(() => {
         if (!noteId) return
         const fetchNoteDetails = async () => {
-          const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/find/${noteId}`);
+          const response = await fetch(`${API_BASE_URL}/api/find/${noteId}`);
           const data = await response.json();
           setNote(data); // Assuming the API returns the note object
         };
@@ -52,7 +54,7 @@ const Notes = () => {
     // implement delete note logic 
     const deleteNote = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/delete/${note.id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/delete/${note.id}`, {
           method: 'DELETE',
         });
         if (response.ok) {
@@ -89,7 +91,7 @@ const Notes = () => {
     // Handle form submission to add a new note / modify
     const handleSubmit = (e) => {
       e.preventDefault();
-      fetch(`${process.env.REACT_APP_API_BASE_URL}/api/notes`, {
+      fetch(`${API_BASE_URL}/api/notes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

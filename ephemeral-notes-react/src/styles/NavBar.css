@@ -1,0 +1,42 @@
+/* Navbar hover effects */
+.nav-hover {
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+.nav-hover:hover {
+  background-color: #e9ecef; /* Light gray background on hover */
+  color: #0056b3 !important; /* Darker blue text on hover */
+}
+
+.navbar {
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  border-radius: 8px;
+  padding: 8px 15px;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link {
+  border-radius: 8px;
+  padding: 8px 15px;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler {
+  border-radius: 8px;
+} 
