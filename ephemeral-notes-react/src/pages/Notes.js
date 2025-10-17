@@ -115,7 +115,7 @@ const Notes = () => {
     }
   
     return (
-      <div>
+      <div className="page-container">
       <form method="POST" onSubmit={handleSubmit}>
         <div className="form-group">
           <div className="input-group mb-3">

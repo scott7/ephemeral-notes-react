@@ -1,42 +1,84 @@
-/* Navbar hover effects */
-.nav-hover {
-  transition: background-color 0.3s ease;
-  border-radius: 4px;
-  padding: 8px 12px;
-}
-
-.nav-hover:hover {
-  background-color: #e9ecef; /* Light gray background on hover */
-  color: #0056b3 !important; /* Darker blue text on hover */
-}
-
+/* Navbar styling */
 .navbar {
   border-radius: 10px;
   margin: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-brand {
-  border-radius: 8px;
-  padding: 8px 15px;
+.nav-hover {
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+/* Theme toggle button styles (for HTML navbar) */
+.theme-toggle-btn {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
+  border: 2px solid #6c757d;
 }
 
-.navbar-brand:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+.theme-toggle-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.nav-link {
-  border-radius: 8px;
-  padding: 8px 15px;
-  margin: 0 5px;
-  transition: all 0.3s ease;
+.theme-toggle-btn i {
+  font-size: 1.1rem;
 }
 
-.nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+/* Dark theme styles */
+.dark-theme {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
 }
 
-.navbar-toggler {
-  border-radius: 8px;
-} 
+.dark-theme .navbar-text {
+  color: #ffffff !important;
+}
+
+.dark-theme .nav-link {
+  color: #ffffff !important;
+}
+
+.dark-theme .nav-link:hover {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .nav-hover:hover {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+/* Theme toggle styles are handled in index.html */
+
+/* Light theme styles */
+.light-theme {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+
+.light-theme .navbar-text {
+  color: #ffffff !important;
+}
+
+.light-theme .nav-link {
+  color: #ffffff !important;
+}
+
+.light-theme .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+.light-theme .nav-hover:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}

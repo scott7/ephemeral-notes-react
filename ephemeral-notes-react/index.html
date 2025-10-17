@@ -37,7 +37,109 @@
       .navbar-toggler {
         border-radius: 8px;
       }
+      
+      /* Theme toggle button styles */
+      .theme-toggle-btn {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        border: 2px solid #ffffff;
+        background-color: transparent;
+        color: #ffffff;
+      }
+
+      .theme-toggle-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .theme-toggle-btn i {
+        font-size: 1.1rem;
+      }
+
+      /* Dark theme styles for HTML navbar */
+      .dark-theme .navbar {
+        background-color: #2d2d2d !important;
+        border: 1px solid #404040;
+      }
+
+      .dark-theme .navbar-dark {
+        background-color: #2d2d2d !important;
+      }
+
+      .dark-theme .navbar-brand {
+        color: #e0e0e0 !important;
+      }
+
+      .dark-theme .navbar-brand:hover {
+        color: #ffffff !important;
+      }
+
+      .dark-theme .nav-link {
+        color: #e0e0e0 !important;
+      }
+
+      .dark-theme .nav-link:hover {
+        background-color: #404040 !important;
+        color: #ffffff !important;
+      }
+
+      .dark-theme .theme-toggle-btn {
+        border-color: #e0e0e0;
+        color: #e0e0e0;
+      }
+
+      .dark-theme .theme-toggle-btn:hover {
+        background-color: #404040;
+        border-color: #ffffff;
+        color: #ffffff;
+      }
+
+      /* Light theme styles for HTML navbar */
+      .light-theme .navbar {
+        background-color: #343a40 !important;
+        border: 1px solid #495057;
+      }
+
+      .light-theme .navbar-dark {
+        background-color: #343a40 !important;
+      }
+
+      .light-theme .navbar-brand {
+        color: #ffffff !important;
+      }
+
+      .light-theme .navbar-brand:hover {
+        color: #f8f9fa !important;
+      }
+
+      .light-theme .nav-link {
+        color: #ffffff !important;
+      }
+
+      .light-theme .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: #f8f9fa !important;
+      }
+
+      .light-theme .theme-toggle-btn {
+        border-color: #ffffff;
+        color: #ffffff;
+      }
+
+      .light-theme .theme-toggle-btn:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: #f8f9fa;
+        color: #f8f9fa;
+      }
     </style>
+  </head>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Notes</a>
@@ -53,12 +155,64 @@
               <a class="nav-link" href="/view">Saved</a>
             </li>
           </ul>
+          <button 
+            class="btn btn-outline-light theme-toggle-btn"
+            onclick="toggleTheme()"
+            title="Toggle dark/light mode"
+            id="themeToggleBtn"
+          >
+            <i class="bi bi-moon" id="themeIcon"></i>
+          </button>
         </div>
       </div>
     </nav>
-  </head>
-  <body>
     <div id="root"></div>
     <script type="module" src="/src/index.js"></script>
+    <script>
+      let isDarkMode = true; // Default to dark mode
+      let reactThemeToggle = null;
+
+      // Initialize theme on page load
+      function initializeTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        isDarkMode = savedTheme !== 'light'; // Default to dark mode unless explicitly set to light
+        applyTheme();
+      }
+
+      function applyTheme() {
+        const body = document.body;
+        const themeIcon = document.getElementById('themeIcon');
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        
+        if (isDarkMode) {
+          body.classList.add('dark-theme');
+          body.classList.remove('light-theme');
+          if (themeIcon) themeIcon.className = 'bi bi-sun';
+          if (themeToggleBtn) themeToggleBtn.title = 'Switch to light mode';
+        } else {
+          body.classList.add('light-theme');
+          body.classList.remove('dark-theme');
+          if (themeIcon) themeIcon.className = 'bi bi-moon';
+          if (themeToggleBtn) themeToggleBtn.title = 'Switch to dark mode';
+        }
+        
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+      }
+
+      function toggleTheme() {
+        isDarkMode = !isDarkMode;
+        applyTheme();
+        
+        if (window.reactThemeToggle) {
+          window.reactThemeToggle();
+        }
+      }
+
+      window.setReactThemeToggle = function(toggleFunction) {
+        window.reactThemeToggle = toggleFunction;
+      };
+
+      document.addEventListener('DOMContentLoaded', initializeTheme);
+    </script>
   </body>
 </html> 

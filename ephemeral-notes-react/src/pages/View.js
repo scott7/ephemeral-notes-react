@@ -44,7 +44,8 @@ export default function View() {
           <ul className='no-bullets'>
             {notes.map(note => (
               <li key={note.id} className="nav-item">
-                <span className="nav-link text bg-light">
+                <br />
+                <span className="nav-link text bg-dark">
                   {note.title}
                 </span>
                 <button onClick={() => navigate(`/${note.id}`)} className="btn btn-primary">
