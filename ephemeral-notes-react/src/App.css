@@ -1,5 +1,13 @@
 .App {
   text-align: left;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-container {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 12px;
 }
 
 .App-logo {
@@ -72,6 +80,7 @@ input[type="checkbox"] {
 }
 
 .menu-bar {
+  margin: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -117,4 +126,65 @@ input[type="checkbox"] {
 
 .toggle-menu-btn:hover {
   background-color: #0056b3; /* Darker shade on hover */
+}
+
+.editor-shell {
+  margin: 2px;
+  max-height: calc(100vh - 300px);
+  min-height: 400px;
+  overflow: auto;
+  border: 2px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 8px;
+  }
+  .editor-shell {
+    max-height: calc(100vh - 260px);
+    min-height: 260px;
+  }
+}
+
+/* Dark theme overrides */
+.dark-theme .expiration {
+  color: #e0e0e0;
+}
+
+.dark-theme .menu-bar {
+  background-color: #2d2d2d;
+  border: 1px solid #404040;
+}
+
+.dark-theme .menu-bar button {
+  background-color: #404040;
+  color: #e0e0e0;
+  border: 1px solid #555555;
+}
+
+.dark-theme .menu-bar button:hover {
+  background-color: #555555;
+}
+
+.dark-theme .menu-bar button.is-active {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.dark-theme .menu-bar button:disabled {
+  background-color: #333333;
+  color: #666666;
+  border-color: #444444;
+}
+
+.dark-theme .toggle-menu-btn {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #0056b3;
+}
+
+.dark-theme .toggle-menu-btn:hover {
+  background-color: #0056b3;
 }

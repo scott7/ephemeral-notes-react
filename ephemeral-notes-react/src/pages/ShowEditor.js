@@ -22,7 +22,9 @@ const MenuBar = ({ editor }) => {
 
   return (
       <>
-      <button type="button" onClick={toggleMenuBar} className="toggle-menu-btn">
+      <button type="button" class="btn btn-dark" title="Shift+Enter to add a line break">?</button>
+      &nbsp;&nbsp;&nbsp;
+      <button type="button" onClick={toggleMenuBar} className="toggle-menu-btn" title="Shift+Enter to add a line break">
         {isMenuBarVisible ? <i className="bi bi-menu-down"></i> : <i className="bi bi-menu-up"></i>}
       </button>
       {isMenuBarVisible && (
@@ -147,42 +149,6 @@ const MenuBar = ({ editor }) => {
           >
                <i className="bi bi-blockquote-left"></i> blockquote
           </button>
-          <button type="button" onClick={() => editor.chain().focus().setHorizontalRule().run()}>
-            <i className="bi bi-rulers"></i> horizontal rule
-          </button>
-          <button type="button" onClick={() => editor.chain().focus().setHardBreak().run()}>
-          <i className="bi bi-dash-lg"></i> line break
-          </button>
-          <button type="button"
-              onClick={() => editor.chain().focus().undo().run()}
-              disabled={
-                  !editor.can()
-                      .chain()
-                      .focus()
-                      .undo()
-                      .run()
-              }
-          >
-              <i className="bi bi-arrow-counterclockwise"></i> undo
-          </button>
-          <button type="button"
-              onClick={() => editor.chain().focus().redo().run()}
-              disabled={
-                  !editor.can()
-                      .chain()
-                      .focus()
-                      .redo()
-                      .run()
-              }
-          >
-              <i className="bi bi-arrow-clockwise"></i> redo
-          </button>
-          <button type="button"
-              onClick={() => editor.chain().focus().toggleHighlight({ color: '#ffcc00' }).run()}
-              className={editor.isActive('highlight') ? 'is-active' : ''}
-          >
-              <i className="bi bi-highlighter"></i> highlight
-          </button>
           <br/>
           <br/>
       </div>
@@ -235,7 +201,7 @@ const ShowEditor = ({ value, onChange }) => {
 
   return (
     <div>
-      <div style={{ margin: '2px', height: '500px', overflow: 'auto', border: '2px solid #ccc', padding: '10px' }}>
+      <div className="editor-shell">
         <MenuBar editor={editor} />
         <EditorContent editor={editor} />
       </div>

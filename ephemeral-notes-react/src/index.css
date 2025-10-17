@@ -2,25 +2,3 @@
   outline: none;
 }
 
-body {
-  padding: 50px;
-  font: 19px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: #000000;
-  text-align: auto;
-  padding: 10px;
-}
-
-@media (max-width: 768px) {
-  #sidebar {
-      margin-left: -250px;
-  }
-  #sidebar.active {
-      margin-left: 0;
-  }
-}
-
-a {
-  color: #00a0df;
-}
-
-
