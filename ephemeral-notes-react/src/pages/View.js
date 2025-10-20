@@ -45,15 +45,17 @@ export default function View() {
             {notes.map(note => (
               <li key={note.id} className="nav-item">
                 <br />
-                <span className="nav-link text bg-dark">
+                <span className="nav-link-view">
                   {note.title}
                 </span>
+                <div className="buttons-container-view">
                 <button onClick={() => navigate(`/${note.id}`)} className="btn btn-primary">
                   Edit
                 </button>
                 <button onClick={() => onDelete(note.id)} className="btn btn-danger">
                   Delete
                 </button>
+                </div>
               </li>
             ))}
           </ul>

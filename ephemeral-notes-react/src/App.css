@@ -79,6 +79,12 @@ input[type="checkbox"] {
   gap: 10px; /* Optional: Adds some space between the buttons */
 }
 
+.buttons-container-view {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+}
+
 .menu-bar {
   margin: 10px;
   display: flex;
