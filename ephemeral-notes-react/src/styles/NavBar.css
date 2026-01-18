@@ -1,94 +1,100 @@
-/* Navbar styling */
+/* GitHub-inspired React NavBar Component Styling */
+
+/* Navbar container */
 .navbar {
-  border-radius: 10px;
-  margin: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-panel) !important;
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+  border-radius: 0;
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  box-shadow: none;
 }
 
-.nav-hover {
-  transition: background-color 0.3s ease;
-  border-radius: 4px;
-  padding: 8px 12px;
+/* Horizontal scrolling navbar */
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+  gap: var(--space-2);
+  max-width: 100%;
+  white-space: nowrap;
 }
 
-/* Theme toggle button styles (for HTML navbar) */
-.theme-toggle-btn {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+/* Custom scrollbar styling */
+.navbar-nav::-webkit-scrollbar {
+  height: 6px;
+}
+
+.navbar-nav::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+  border-radius: 3px;
+}
+
+.navbar-nav::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 3px;
+}
+
+.navbar-nav::-webkit-scrollbar-thumb:hover {
+  background: var(--border-emphasis);
+}
+
+/* Navigation item */
+.nav-item {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+/* Navigation link styling - note cards */
+.nav-link {
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  border: 2px solid #6c757d;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-link) !important;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  text-decoration: none;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
-.theme-toggle-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+.nav-link:hover {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-default);
+  color: var(--text-primary) !important;
 }
 
-.theme-toggle-btn i {
-  font-size: 1.1rem;
+.nav-link:active {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-emphasis);
 }
 
-/* Dark theme styles */
-.dark-theme {
-  background-color: #1a1a1a;
-  color: #e0e0e0;
+.nav-link i {
+  font-size: 14px;
+  opacity: 0.8;
 }
 
-.dark-theme .navbar-text {
-  color: #ffffff !important;
+/* Navbar text for empty state */
+.navbar-text {
+  color: var(--text-secondary) !important;
+  font-size: var(--text-sm);
+  padding: var(--space-2);
+  margin: 0;
 }
 
-.dark-theme .nav-link {
-  color: #ffffff !important;
+/* Remove any Bootstrap overrides that might conflict */
+.navbar.bg-dark {
+  background-color: var(--bg-panel) !important;
 }
 
-.dark-theme .nav-link:hover {
-  background-color: #404040 !important;
-  color: #ffffff !important;
-}
-
-.dark-theme .nav-link-view {
-  color: #ffffff !important;
-  margin: 10px
-}
-
-.dark-theme .nav-hover:hover {
-  background-color: #404040 !important;
-  color: #ffffff !important;
-}
-
-/* Theme toggle styles are handled in index.html */
-
-/* Light theme styles */
-.light-theme {
-  background-color: #ffffff;
-  color: #333333;
-}
-
-
-.light-theme .navbar-text {
-  color: #ffffff !important;
-}
-
-.light-theme .nav-link {
-  color: #ffffff !important;
-}
-
-.light-theme .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  color: #000000 !important;
-}
-
-.light-theme .nav-link-view {
-  color: #000000 !important;
-  margin: 10px
-}
-
-.light-theme .nav-hover:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
+.navbar-dark .navbar-text {
+  color: var(--text-secondary) !important;
 }

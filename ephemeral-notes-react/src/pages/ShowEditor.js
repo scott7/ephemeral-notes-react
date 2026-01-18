@@ -1,6 +1,7 @@
 import '../style.scss'
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 import { Color } from '@tiptap/extension-color'
 import Highlight from '@tiptap/extension-highlight'
@@ -11,10 +12,13 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit'
 
 const MenuBar = ({ editor }) => {
+  const { isDarkMode } = useTheme();
 
   const [isMenuBarVisible, setIsMenuBarVisible] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const toggleMenuBar = () => setIsMenuBarVisible(!isMenuBarVisible);
+  const toggleModal = () => setShowModal(!showModal);
 
   if (!editor) {
     return null
@@ -22,7 +26,7 @@ const MenuBar = ({ editor }) => {
 
   return (
       <>
-      <button type="button" class="btn btn-dark" title="Shift+Enter to add a line break">?</button>
+      <button type="button" className="btn btn-dark" onClick={toggleModal}>?</button>
       &nbsp;&nbsp;&nbsp;
       <button type="button" onClick={toggleMenuBar} className="toggle-menu-btn" title="Shift+Enter to add a line break">
         {isMenuBarVisible ? <i className="bi bi-menu-down"></i> : <i className="bi bi-menu-up"></i>}
@@ -152,6 +156,35 @@ const MenuBar = ({ editor }) => {
           <br/>
           <br/>
       </div>
+      )}
+
+      {/* Modal */}
+      {showModal && (
+        <div className="modal show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }} onClick={toggleModal}>
+          <div className="modal-dialog modal-dialog-centered" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-content" style={{
+              backgroundColor: 'var(--bg-panel)',
+              borderColor: 'var(--border-default)',
+              color: 'var(--text-primary)'
+            }}>
+              <div className="modal-header" style={{ borderColor: 'var(--border-default)' }}>
+                <h5 className="modal-title" style={{ color: 'var(--text-primary)' }}>Tip</h5>
+                <button
+                  type="button"
+                  className={`btn-close ${isDarkMode ? 'btn-close-white' : ''}`}
+                  onClick={toggleModal}
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p style={{ color: 'var(--text-primary)' }}>Shift+Enter to add a line break in the text editor</p>
+              </div>
+              <div className="modal-footer" style={{ borderColor: 'var(--border-default)' }}>
+                <button type="button" className="btn btn-secondary" onClick={toggleModal}>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
       </>
   )
