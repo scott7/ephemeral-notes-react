@@ -1,56 +1,211 @@
-/* Basic editor styles */
+/* GitHub-inspired Tiptap Editor Typography */
+
 .tiptap {
-    > * + * {
-      margin-top: 0.75em;
-    }
-  
-    ul,
-    ol {
-      padding: 0 1rem;
-    }
-  
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      line-height: 1.1;
-    }
-  
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+
+  > * + * {
+    margin-top: 1em;
+  }
+
+  /* ============================================
+     HEADINGS
+     ============================================ */
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-tight);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--border-default);
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--border-muted);
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+  }
+
+  h4, h5, h6 {
+    font-size: var(--text-base);
+  }
+
+  /* ============================================
+     PARAGRAPHS & TEXT
+     ============================================ */
+
+  p {
+    margin: 0.75em 0;
+    line-height: var(--leading-relaxed);
+  }
+
+  strong {
+    font-weight: var(--font-semibold);
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  /* ============================================
+     LISTS
+     ============================================ */
+
+  ul, ol {
+    padding-left: 2em;
+    margin: 0.75em 0;
+  }
+
+  li {
+    margin: 0.25em 0;
+    line-height: var(--leading-normal);
+  }
+
+  li p {
+    margin: 0.25em 0;
+  }
+
+  /* ============================================
+     CODE & PREFORMATTED TEXT
+     ============================================ */
+
+  code {
+    background-color: var(--bg-panel);
+    color: var(--text-primary);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    border: 1px solid var(--border-default);
+  }
+
+  pre {
+    background-color: var(--bg-canvas-inset);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    padding: var(--space-4);
+    border-radius: 6px;
+    border: 1px solid var(--border-default);
+    overflow-x: auto;
+    margin: 1em 0;
+    line-height: var(--leading-normal);
+
     code {
-      background-color: rgba(#616161, 0.1);
-      color: #616161;
-    }
-  
-    pre {
-      background: #0D0D0D;
-      color: #FFF;
-      font-family: 'JetBrainsMono', monospace;
-      padding: 0.75rem 1rem;
-      border-radius: 0.5rem;
-  
-      code {
-        color: inherit;
-        padding: 0;
-        background: none;
-        font-size: 0.8rem;
-      }
-    }
-  
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-  
-    blockquote {
-      padding-left: 1rem;
-      border-left: 2px solid rgba(#0D0D0D, 0.1);
-    }
-  
-    hr {
+      background: none;
+      color: inherit;
+      padding: 0;
       border: none;
-      border-top: 2px solid rgba(#0D0D0D, 0.1);
-      margin: 2rem 0;
+      font-size: 0.875em;
     }
   }
+
+  /* ============================================
+     BLOCKQUOTES
+     ============================================ */
+
+  blockquote {
+    padding-left: var(--space-4);
+    border-left: 3px solid var(--border-emphasis);
+    color: var(--text-secondary);
+    margin: 1em 0;
+    font-style: italic;
+
+    p {
+      margin: 0.5em 0;
+    }
+  }
+
+  /* ============================================
+     HORIZONTAL RULES
+     ============================================ */
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-default);
+    margin: 2em 0;
+  }
+
+  /* ============================================
+     IMAGES
+     ============================================ */
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--border-default);
+    margin: 1em 0;
+  }
+
+  /* ============================================
+     LINKS
+     ============================================ */
+
+  a {
+    color: var(--text-link);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.15s ease;
+
+    &:hover {
+      text-decoration-color: var(--text-link);
+    }
+  }
+
+  /* ============================================
+     MARKS & FORMATTING
+     ============================================ */
+
+  mark,
+  .highlight {
+    background-color: var(--accent-muted);
+    color: var(--text-primary);
+    padding: 0.1em 0.2em;
+    border-radius: 2px;
+  }
+
+  u {
+    text-decoration: underline;
+  }
+
+  s {
+    text-decoration: line-through;
+  }
+
+  /* ============================================
+     PLACEHOLDER
+     ============================================ */
+
+  p.is-editor-empty:first-child::before {
+    color: var(--text-secondary);
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  }
+
+  /* ============================================
+     FOCUS & SELECTION
+     ============================================ */
+
+  &:focus {
+    outline: none;
+  }
+
+  ::selection {
+    background-color: var(--accent-muted);
+  }
+}

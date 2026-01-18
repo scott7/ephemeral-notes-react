@@ -1,14 +1,255 @@
+/* GitHub-inspired App Component Styling */
+
+/* ============================================
+   LAYOUT & CONTAINERS
+   ============================================ */
+
 .App {
-  text-align: left;
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .page-container {
-  max-width: 1800px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 12px;
+  padding: var(--space-6) var(--space-4);
 }
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: var(--space-4) var(--space-3);
+  }
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+.form-group {
+  margin-bottom: var(--space-4);
+}
+
+.input-group {
+  margin-bottom: var(--space-4);
+}
+
+.expiration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: var(--space-4) 0;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.expiration label {
+  margin: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.expiration input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--accent-emphasis);
+  margin: 0;
+}
+
+/* ============================================
+   BUTTON CONTAINERS
+   ============================================ */
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+}
+
+.buttons-container-view {
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  margin: var(--space-2) 0;
+}
+
+/* ============================================
+   EDITOR TOOLBAR
+   ============================================ */
+
+.menu-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  margin-bottom: var(--space-3);
+}
+
+.menu-bar button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-primary);
+  background-color: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.menu-bar button:hover:not(:disabled) {
+  background-color: var(--btn-hover-bg);
+  border-color: var(--border-emphasis);
+}
+
+.menu-bar button:active:not(:disabled) {
+  background-color: var(--btn-active-bg);
+  transform: scale(0.98);
+}
+
+.menu-bar button.is-active {
+  background-color: var(--accent-emphasis);
+  border-color: var(--accent-emphasis);
+  color: var(--text-on-emphasis);
+}
+
+.menu-bar button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: var(--text-secondary);
+}
+
+.menu-bar button i {
+  font-size: 14px;
+}
+
+/* Toggle menu button */
+.toggle-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-on-emphasis);
+  background-color: var(--accent-emphasis);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.toggle-menu-btn:hover {
+  background-color: #1a5fd0;
+  box-shadow: var(--shadow-sm);
+}
+
+.toggle-menu-btn:active {
+  background-color: #1454b8;
+  transform: scale(0.98);
+}
+
+.toggle-menu-btn i {
+  font-size: 16px;
+}
+
+/* ============================================
+   EDITOR SHELL
+   ============================================ */
+
+.editor-shell {
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  padding: var(--space-4);
+  margin: var(--space-2) 0;
+  max-height: calc(100vh - 300px);
+  min-height: 400px;
+  overflow: auto;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.editor-shell:focus-within {
+  border-color: var(--accent-emphasis);
+  box-shadow: var(--focus-ring);
+}
+
+@media (max-width: 768px) {
+  .editor-shell {
+    max-height: calc(100vh - 260px);
+    min-height: 260px;
+    padding: var(--space-3);
+  }
+}
+
+/* ============================================
+   VIEW PAGE STYLES
+   ============================================ */
+
+.no-bullets {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.no-bullets .nav-item {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  padding: var(--space-4);
+  margin-bottom: var(--space-3);
+  transition: all 0.15s ease;
+}
+
+.no-bullets .nav-item:hover {
+  background-color: var(--bg-panel-hover);
+  border-color: var(--border-emphasis);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-link-view {
+  display: block;
+  color: var(--text-primary) !important;
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-3);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-link-view:hover {
+  color: var(--text-link) !important;
+}
+
+h3 {
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  margin: var(--space-6) 0 var(--space-4) 0;
+  padding-left: var(--space-4);
+}
+
+/* ============================================
+   LEGACY STYLES (keeping for compatibility)
+   ============================================ */
 
 .App-logo {
   height: 10vmin;
@@ -30,32 +271,22 @@
   }
 }
 
+/* Remove old navbar-nav styles that might conflict */
 .navbar-nav {
   display: flex;
-  flex-direction: row; /* Align items horizontally */
-  list-style: none; /* Removes default list styling */
-  padding-left: 0; /* Removes default padding */
-  overflow-x: auto; /* Enables horizontal scrolling */
-  max-width: 100%; /* Adjust this value as needed */
-  white-space: nowrap; /* Prevents items from wrapping */
+  flex-direction: row;
+  list-style: none;
+  padding-left: 0;
+  overflow-x: auto;
+  max-width: 100%;
+  white-space: nowrap;
 }
+
 .nav-item {
-  margin-right: 1rem; /* Adds some space between items */
-  flex: 0 0 auto; /* Prevents flex items from growing or shrinking */
+  flex: 0 0 auto;
 }
 
-.nav-link:hover {
-  background-color: #1e1f22; /* Light grey background on hover */
-  border-radius: 5px; /* Rounded corners */
-  transition: background-color 0.2s ease-in-out; /* Smooth transition */
-}
-
-.no-bullets {
-  list-style-type: none; /* Removes bullet points */
-  padding-left: 0; /* Removes default padding */
-}
-
-label { 
+label {
   display: block;
   text-align: center;
 }
@@ -64,133 +295,4 @@ input[type="checkbox"] {
   display: inline-block;
   width: 15px;
   vertical-align: middle;
-}
-
-.expiration {
-  display: flex;
-  justify-content: center;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; 
-  color: #000000;
-}
-
-.buttons-container {
-  display: flex;
-  justify-content: center; /* Centers the buttons horizontally */
-  gap: 10px; /* Optional: Adds some space between the buttons */
-}
-
-.buttons-container-view {
-  display: flex;
-  justify-content: left;
-  gap: 10px;
-}
-
-.menu-bar {
-  margin: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-color: #f0f0f0; /* Light grey background */
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
-}
-
-.menu-bar button {
-  margin: 5px;
-  padding: 5px 10px;
-  background-color: #A3D5FF; /* Soft Blue */
-  color: #333; /* Darker text color for better contrast */
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.menu-bar button:hover {
-  background-color: #91cbee; /* Slightly darker for hover */
-}
-
-.menu-bar button.is-active {
-  background-color: #7b9ec9; /* A more saturated version for active state */
-}
-
-.menu-bar button:disabled {
-  background-color: #E0E0E0; /* Light grey for disabled state */
-  cursor: not-allowed;
-}
-
-.toggle-menu-btn {
-  margin-bottom: 10px; /* Adds space below the button */
-  cursor: pointer;
-  padding: 5px 10px;
-  background-color: #007bff; /* Example: a blue background */
-  color: white;
-  border: none;
-  border-radius: 5px;
-}
-
-.toggle-menu-btn:hover {
-  background-color: #0056b3; /* Darker shade on hover */
-}
-
-.editor-shell {
-  margin: 2px;
-  max-height: calc(100vh - 300px);
-  min-height: 400px;
-  overflow: auto;
-  border: 2px solid #ccc;
-  padding: 10px;
-  border-radius: 6px;
-}
-
-@media (max-width: 768px) {
-  .page-container {
-    padding: 8px;
-  }
-  .editor-shell {
-    max-height: calc(100vh - 260px);
-    min-height: 260px;
-  }
-}
-
-/* Dark theme overrides */
-.dark-theme .expiration {
-  color: #e0e0e0;
-}
-
-.dark-theme .menu-bar {
-  background-color: #2d2d2d;
-  border: 1px solid #404040;
-}
-
-.dark-theme .menu-bar button {
-  background-color: #404040;
-  color: #e0e0e0;
-  border: 1px solid #555555;
-}
-
-.dark-theme .menu-bar button:hover {
-  background-color: #555555;
-}
-
-.dark-theme .menu-bar button.is-active {
-  background-color: #007bff;
-  color: #ffffff;
-}
-
-.dark-theme .menu-bar button:disabled {
-  background-color: #333333;
-  color: #666666;
-  border-color: #444444;
-}
-
-.dark-theme .toggle-menu-btn {
-  background-color: #007bff;
-  color: white;
-  border: 1px solid #0056b3;
-}
-
-.dark-theme .toggle-menu-btn:hover {
-  background-color: #0056b3;
 }

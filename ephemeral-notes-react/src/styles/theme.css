@@ -1,112 +1,275 @@
-/* Global theme variables and styles */
+/* GitHub Dark Mode-Inspired Theme System */
 
-/* Light theme (default) */
+/* ============================================
+   ROOT VARIABLES - DARK THEME (DEFAULT)
+   ============================================ */
+
 :root {
-  --bg-primary: #212529;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #333333;
-  --text-secondary: #6c757d;
-  --border-color: #dee2e6;
-  --hover-bg: #e9ecef;
-  --shadow: rgba(0, 0, 0, 0.1);
+  /* ===== Backgrounds ===== */
+  --bg-canvas: #0d1117;           /* Main background */
+  --bg-canvas-inset: #010409;     /* Deeper inset areas (code blocks) */
+  --bg-panel: #161b22;            /* Secondary panels/cards */
+  --bg-panel-hover: #1c2128;      /* Panel hover state */
+  --bg-tertiary: #21262d;         /* Tertiary backgrounds/hover */
+
+  /* ===== Borders ===== */
+  --border-default: #30363d;      /* Standard borders */
+  --border-muted: #21262d;        /* Subtle borders */
+  --border-emphasis: #6e7681;     /* Emphasized borders */
+
+  /* ===== Text ===== */
+  --text-primary: #c9d1d9;        /* Primary text */
+  --text-secondary: #8b949e;      /* Secondary/muted text */
+  --text-link: #58a6ff;           /* Links */
+  --text-on-emphasis: #ffffff;    /* Text on colored backgrounds */
+
+  /* ===== Interactive Colors ===== */
+  --accent-emphasis: #1f6feb;     /* Primary buttons, emphasis */
+  --accent-muted: rgba(56, 139, 253, 0.4);  /* Muted accent */
+  --success-emphasis: #238636;    /* Success states */
+  --danger-emphasis: #da3633;     /* Delete/danger actions */
+
+  /* ===== Buttons ===== */
+  --btn-bg: #21262d;              /* Default button background */
+  --btn-hover-bg: #30363d;        /* Button hover */
+  --btn-active-bg: #373e47;       /* Button active state */
+  --btn-border: rgba(240, 246, 252, 0.1);  /* Button borders */
+
+  /* ===== Shadows ===== */
+  --shadow-sm: 0 1px 0 rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.3);
+
+  /* ===== Focus ===== */
+  --focus-ring: 0 0 0 3px rgba(31, 111, 235, 0.3);
+
+  /* ===== Typography ===== */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Font sizes */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+
+  /* Font weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Line heights */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  /* ===== Spacing Scale ===== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
 }
 
-/* Dark theme */
-.dark-theme {
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #2d2d2d;
-  --text-primary: #e0e0e0;
-  --text-secondary: #adb5bd;
-  --border-color: #404040;
-  --hover-bg: #404040;
-  --shadow: rgba(0, 0, 0, 0.3);
+/* ============================================
+   LIGHT THEME OVERRIDES
+   ============================================ */
+
+.light-theme {
+  /* Backgrounds */
+  --bg-canvas: #ffffff;
+  --bg-canvas-inset: #f6f8fa;
+  --bg-panel: #f6f8fa;
+  --bg-panel-hover: #eaeef2;
+  --bg-tertiary: #eaeef2;
+
+  /* Borders */
+  --border-default: #d0d7de;
+  --border-muted: #d8dee4;
+  --border-emphasis: #8c959f;
+
+  /* Text */
+  --text-primary: #24292f;
+  --text-secondary: #57606a;
+  --text-link: #0969da;
+  --text-on-emphasis: #ffffff;
+
+  /* Interactive */
+  --accent-emphasis: #0969da;
+  --accent-muted: rgba(9, 105, 218, 0.1);
+  --success-emphasis: #1a7f37;
+  --danger-emphasis: #cf222e;
+
+  /* Buttons */
+  --btn-bg: #f6f8fa;
+  --btn-hover-bg: #eaeef2;
+  --btn-active-bg: #dfe2e6;
+  --btn-border: rgba(27, 31, 36, 0.15);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 0 rgba(27, 31, 36, 0.04);
+  --shadow-md: 0 3px 6px rgba(140, 149, 159, 0.15);
+  --shadow-lg: 0 8px 24px rgba(140, 149, 159, 0.2);
+
+  /* Focus */
+  --focus-ring: 0 0 0 3px rgba(9, 105, 218, 0.3);
 }
 
-/* Apply theme variables globally */
+/* ============================================
+   GLOBAL BODY STYLING
+   ============================================ */
+
 body {
-  background-color: var(--bg-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  background-color: var(--bg-canvas);
   color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  margin: 0;
+  padding: 0;
 }
 
-/* Dark theme specific styles */
-.dark-theme body {
-  background-color: var(--bg-primary);
+.dark-theme body,
+.light-theme body {
+  background-color: var(--bg-canvas);
   color: var(--text-primary);
 }
 
 .dark-theme .container,
-.dark-theme .container-fluid {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-}
-
-.dark-theme .card {
-  background-color: var(--bg-secondary);
-  border-color: var(--border-color);
-  color: var(--text-primary);
-}
-
-.dark-theme .form-control {
-  background-color: var(--bg-secondary);
-  border-color: var(--border-color);
-  color: var(--text-primary);
-}
-
-.dark-theme .form-control:focus {
-  background-color: var(--bg-secondary);
-  border-color: #007bff;
-  color: var(--text-primary);
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-.dark-theme .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-}
-
-.dark-theme .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #004085;
-}
-
-.dark-theme .btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-
-.dark-theme .btn-secondary:hover {
-  background-color: #545b62;
-  border-color: #4e555b;
-}
-
-/* Light theme specific styles */
-.light-theme body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-}
-
+.dark-theme .container-fluid,
 .light-theme .container,
 .light-theme .container-fluid {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-canvas);
   color: var(--text-primary);
 }
 
-.light-theme .card {
-  background-color: #ffffff;
-  border-color: var(--border-color);
-  color: var(--text-primary);
+/* ============================================
+   BOOTSTRAP BUTTON OVERRIDES
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-tight);
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.light-theme .form-control {
-  background-color: #ffffff;
-  border-color: var(--border-color);
-  color: var(--text-primary);
+.btn:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
-.light-theme .form-control:focus {
-  background-color: #ffffff;
-  border-color: #007bff;
-  color: var(--text-primary);
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+.btn-primary {
+  color: var(--text-on-emphasis) !important;
+  background-color: var(--accent-emphasis) !important;
+  border-color: var(--btn-border) !important;
+}
+
+.btn-primary:hover {
+  background-color: #1a5fd0 !important;
+  border-color: var(--btn-border) !important;
+}
+
+.btn-primary:active {
+  background-color: #1454b8 !important;
+  transform: scale(0.98);
+}
+
+.btn-danger {
+  color: var(--text-on-emphasis) !important;
+  background-color: var(--danger-emphasis) !important;
+  border-color: var(--btn-border) !important;
+}
+
+.btn-danger:hover {
+  background-color: #c42b29 !important;
+  border-color: var(--btn-border) !important;
+}
+
+.btn-danger:active {
+  background-color: #ae2725 !important;
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--btn-bg) !important;
+  border-color: var(--border-default) !important;
+  color: var(--text-secondary) !important;
+}
+
+/* ============================================
+   BOOTSTRAP FORM CONTROLS
+   ============================================ */
+
+.form-control {
+  background-color: var(--bg-canvas) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: 6px;
+  color: var(--text-primary) !important;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  padding: var(--space-2) var(--space-3);
+  transition: all 0.15s ease;
+}
+
+.form-control:focus {
+  background-color: var(--bg-canvas) !important;
+  border-color: var(--accent-emphasis) !important;
+  color: var(--text-primary) !important;
+  outline: none;
+  box-shadow: var(--focus-ring) !important;
+}
+
+.form-control::placeholder {
+  color: var(--text-secondary);
+  opacity: 1;
+}
+
+.input-group-text {
+  background-color: var(--bg-panel) !important;
+  border: 1px solid var(--border-default) !important;
+  color: var(--text-secondary) !important;
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  padding: var(--space-2) var(--space-3);
+  border-radius: 6px 0 0 6px;
+}
+
+.input-group > .form-control {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* ============================================
+   BOOTSTRAP CARD OVERRIDES
+   ============================================ */
+
+.card {
+  background-color: var(--bg-panel) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: 6px;
+  color: var(--text-primary) !important;
+}
+
+.card:hover {
+  border-color: var(--border-emphasis) !important;
+  box-shadow: var(--shadow-sm);
 }
